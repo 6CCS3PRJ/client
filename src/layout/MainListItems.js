@@ -3,7 +3,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import DashboardIcon from "@material-ui/icons/Dashboard";
-import LocalHospitalIcon from "@material-ui/icons/LocalHospital";
+import WifiIcon from "@material-ui/icons/Wifi";
 import {useHistory} from "react-router-dom";
 
 export const MainListItems = () => {
@@ -18,11 +18,11 @@ export const MainListItems = () => {
             </ListItem>
             <ListItem button>
                 <ListItemIcon>
-                    <LocalHospitalIcon/>
+                    <WifiIcon/>
                 </ListItemIcon>
                 <ListItemText
-                    onClick={() => history.push("/cases")}
-                    primary="All cases"
+                    onClick={() => history.push("/hotspots")}
+                    primary="Hotspots Count"
                 />
             </ListItem>
         </div>

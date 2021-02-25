@@ -2,7 +2,7 @@ import React from "react";
 import {BrowserRouter as Router, Route, Switch, useHistory,} from "react-router-dom";
 import {SnackbarProvider} from "notistack";
 import HomePage from "./pages/home";
-import CasesPage from "./pages/cases";
+import HotspotsPage from "./pages/hotspots";
 
 const App = () => {
     let history = useHistory();
@@ -17,7 +17,7 @@ const App = () => {
             <Router history={history}>
                 <Switch>
                     <Route exact path="/" component={HomePage}/>
-                    <Route exact path="/cases" component={CasesPage}/>
+                    <Route exact path="/hotspots" component={HotspotsPage}/>
                 </Switch>
             </Router>
         </SnackbarProvider>

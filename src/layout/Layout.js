@@ -14,7 +14,7 @@ import Container from "@material-ui/core/Container";
 import Link from "@material-ui/core/Link";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import {MainListItems} from "../listItems";
+import {MainListItems} from "./MainListItems";
 
 const drawerWidth = 240;
 
