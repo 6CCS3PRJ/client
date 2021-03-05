@@ -11,27 +11,25 @@ export const MainListItems = () => {
   const history = useHistory();
   return (
     <div>
-      <ListItem button>
+      <ListItem button onClick={() => history.push("/")}>
         <ListItemIcon>
           <DashboardIcon />
         </ListItemIcon>
-        <ListItemText onClick={() => history.push("/")} primary="Homepage" />
+        <ListItemText primary="Homepage" />
       </ListItem>
-      <ListItem button>
+      <ListItem button onClick={() => history.push("/hotspots")}>
         <ListItemIcon>
           <WifiIcon />
         </ListItemIcon>
         <ListItemText
-          onClick={() => history.push("/hotspots")}
           primary="Hotspots Count"
         />
       </ListItem>
-      <ListItem button>
+      <ListItem button onClick={() => history.push("/upload")}>
         <ListItemIcon>
           <PublishIcon />
         </ListItemIcon>
         <ListItemText
-          onClick={() => history.push("/upload")}
           primary="Upload Scans"
         />
       </ListItem>
