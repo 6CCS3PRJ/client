@@ -5,15 +5,15 @@ import "./home.css";
 import HotspotsByLocationTable from "../components/tables/HotspotsByLocationTable";
 
 export default function HotspotsPage() {
-    return (
-        <>
-            <Layout>
-                <Grid container spacing={3}>
-                    <Grid item xs={12}>
-                       <HotspotsByLocationTable />
-                    </Grid>
-                </Grid>
-            </Layout>
-        </>
-    );
+  return (
+    <>
+      <Layout>
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <HotspotsByLocationTable />
+          </Grid>
+        </Grid>
+      </Layout>
+    </>
+  );
 }
