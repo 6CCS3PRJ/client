@@ -14,20 +14,20 @@ import { CircularProgress } from "@material-ui/core";
 
 export default function Chart(props) {
   const theme = useTheme();
-  const [data, setData] = useState([])
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     if (props.stats) {
-      setData(
-        props.stats
-      )
+      setData(props.stats);
     }
-  }, [props.stats])
+  }, [props.stats]);
   return (
     <>
       <Title>Positive cases registered in the last 14 days</Title>
       <ResponsiveContainer>
-        {props.loading ?? false ? <CircularProgress /> :
+        {props.loading ?? false ? (
+          <CircularProgress />
+        ) : (
           <LineChart
             data={data}
             margin={{
@@ -43,10 +43,13 @@ export default function Chart(props) {
               <Label
                 angle={270}
                 position="left"
-                style={{ textAnchor: "middle", fill: theme.palette.text.primary }}
+                style={{
+                  textAnchor: "middle",
+                  fill: theme.palette.text.primary,
+                }}
               >
                 Positive Cases
-            </Label>
+              </Label>
             </YAxis>
             <Line
               type="monotone"
@@ -55,7 +58,7 @@ export default function Chart(props) {
               dot={false}
             />
           </LineChart>
-        }
+        )}
       </ResponsiveContainer>
     </>
   );

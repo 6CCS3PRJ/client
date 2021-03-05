@@ -49,7 +49,12 @@ const MapChart = ({ setTooltipContent }) => {
   };
 
   return data.length === 0 ? (
-    <><Typography variant="h5" style={{paddingTop:50}}>Loading Map Data </Typography><br/> <CircularProgress /></>
+    <>
+      <Typography variant="h5" style={{ paddingTop: 50 }}>
+        Loading Map Data{" "}
+      </Typography>
+      <br /> <CircularProgress />
+    </>
   ) : (
     <ComposableMap style={{ backgroundColor: "lightblue" }}>
       <ZoomableGroup zoom={35} center={centrePoint} maxZoom={500} minZoom={10}>

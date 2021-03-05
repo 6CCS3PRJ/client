@@ -7,8 +7,8 @@ import Chart from "../components/Chart";
 import Cases from "../components/Cases";
 import Layout from "../layout/Layout";
 import "./home.css";
-import { getUploadStats } from "../api/server"
-import { useSnackbar } from "notistack"
+import { getUploadStats } from "../api/server";
+import { useSnackbar } from "notistack";
 import { DateTime } from "luxon";
 
 const useStyles = makeStyles((theme) => ({
@@ -30,31 +30,40 @@ export default function HomePage() {
 
   const [uploadStats, setUploadStats] = useState();
   const [loadingStats, setLoadingStats] = useState(false);
-  const [todaysCount, setTodaysCount] = useState(0)
+  const [todaysCount, setTodaysCount] = useState(0);
   useEffect(() => {
     const loadUploadStats = async () => {
-      setLoadingStats(true)
+      setLoadingStats(true);
       const [code, result] = await getUploadStats();
-      setLoadingStats(false)
+      setLoadingStats(false);
       if (code !== 200) {
-        enqueueSnackbar("There was an error.", { variant: "error", autoHideDuration: 300 })
-        return
+        enqueueSnackbar("There was an error.", {
+          variant: "error",
+          autoHideDuration: 300,
+        });
+        return;
       }
       const todayDate = DateTime.now().toISODate();
-      console.log(todayDate)
-      let today = result.filter(el => todayDate === DateTime.fromISO(el.date).toISODate())
+      console.log(todayDate);
+      let today = result.filter(
+        (el) => todayDate === DateTime.fromISO(el.date).toISODate()
+      );
       if (today.length === 1) {
         setTodaysCount(today[0].amount);
       }
 
-      setUploadStats(result.map(el => {
-        el.date = DateTime.fromISO(el.date).toLocaleString({ day: "2-digit", month: "short" })
-        return el;
-      }));
-
-    }
+      setUploadStats(
+        result.map((el) => {
+          el.date = DateTime.fromISO(el.date).toLocaleString({
+            day: "2-digit",
+            month: "short",
+          });
+          return el;
+        })
+      );
+    };
     loadUploadStats();
-  }, [enqueueSnackbar])
+  }, [enqueueSnackbar]);
 
   return (
     <>

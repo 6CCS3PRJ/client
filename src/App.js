@@ -9,7 +9,7 @@ import { SnackbarProvider } from "notistack";
 import HomePage from "./pages/home";
 import HotspotsPage from "./pages/hotspots";
 import UploadPage from "./pages/upload";
-import MapPage from "./pages/map"
+import MapPage from "./pages/map";
 
 const App = () => {
   let history = useHistory();
