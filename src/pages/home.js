@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Chart from "../components/Chart";
 import Cases from "../components/Cases";
-import MapChart from "../components/MapChart";
-import MouseTooltip from "react-sticky-mouse-tooltip";
 import Layout from "../layout/Layout";
 import "./home.css";
 import { getUploadStats } from "../api/server"
@@ -31,7 +28,6 @@ export default function HomePage() {
   const { enqueueSnackbar } = useSnackbar();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
-  const [content, setContent] = useState();
   const [uploadStats, setUploadStats] = useState();
   const [loadingStats, setLoadingStats] = useState(false);
   const [todaysCount, setTodaysCount] = useState(0)
@@ -62,15 +58,6 @@ export default function HomePage() {
 
   return (
     <>
-      <MouseTooltip visible={content?.length > 0} offsetX={15} offsetY={10}>
-        {content ? (
-          <Paper elevation={2}>
-            <Typography style={{ padding: 10 }}>
-              <b>{content[0]}</b> - {content[1]}
-            </Typography>
-          </Paper>
-        ) : undefined}
-      </MouseTooltip>
       <Layout>
         <Grid container spacing={3}>
           {/* Chart */}
@@ -83,14 +70,6 @@ export default function HomePage() {
           <Grid item xs={12} md={4} lg={3}>
             <Paper className={fixedHeightPaper}>
               <Cases loading={loadingStats} count={todaysCount} />
-            </Paper>
-          </Grid>
-          {/* Table */}
-          <Grid item xs={12}>
-            <Paper className={classes.paper}>
-              <div>
-                <MapChart setTooltipContent={setContent} />
-              </div>
             </Paper>
           </Grid>
         </Grid>

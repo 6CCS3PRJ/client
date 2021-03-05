@@ -7,7 +7,7 @@ import {
 } from "react-simple-maps";
 import { scaleQuantile } from "d3-scale";
 import { getFeatures } from "../api/server";
-import { CircularProgress } from "@material-ui/core";
+import { CircularProgress, Typography } from "@material-ui/core";
 import * as axios from "axios";
 
 const centrePoint = [-1.464854, 52.561928]; //https://bit.ly/3usGiQX
@@ -49,7 +49,7 @@ const MapChart = ({ setTooltipContent }) => {
   };
 
   return data.length === 0 ? (
-    <CircularProgress />
+    <><Typography variant="h5" style={{paddingTop:50}}>Loading Map Data </Typography><br/> <CircularProgress /></>
   ) : (
     <ComposableMap style={{ backgroundColor: "lightblue" }}>
       <ZoomableGroup zoom={35} center={centrePoint} maxZoom={500} minZoom={10}>

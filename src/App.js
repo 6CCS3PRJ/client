@@ -9,6 +9,7 @@ import { SnackbarProvider } from "notistack";
 import HomePage from "./pages/home";
 import HotspotsPage from "./pages/hotspots";
 import UploadPage from "./pages/upload";
+import MapPage from "./pages/map"
 
 const App = () => {
   let history = useHistory();
@@ -25,6 +26,7 @@ const App = () => {
           <Route exact path="/" component={HomePage} />
           <Route exact path="/hotspots" component={HotspotsPage} />
           <Route exact path="/upload" component={UploadPage} />
+          <Route exact path="/map" component={MapPage} />
         </Switch>
       </Router>
     </SnackbarProvider>

@@ -1,8 +1,7 @@
 import React from "react";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
+import { ListItem, ListItemText, ListItemIcon, Typography } from "@material-ui/core/";
 import DashboardIcon from "@material-ui/icons/Dashboard";
+import MapIcon from "@material-ui/icons/Map"
 import WifiIcon from "@material-ui/icons/Wifi";
 import PublishIcon from "@material-ui/icons/Publish"
 import { useHistory } from "react-router-dom";
@@ -31,6 +30,14 @@ export const MainListItems = () => {
         </ListItemIcon>
         <ListItemText
           primary="Upload Scans"
+        />
+      </ListItem>
+      <ListItem button onClick={() => history.push("/map")}>
+        <ListItemIcon>
+          <MapIcon />
+        </ListItemIcon>
+        <ListItemText
+          primary="Map"
         />
       </ListItem>
     </div>
