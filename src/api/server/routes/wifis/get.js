@@ -1,7 +1,11 @@
-import {get} from "../../api";
+import { get } from "../../api";
 
-const allWifis = async () => {
-    return await get("/wifis");
+const getWifis = async () => {
+  return await get("/wifis/get/features"); //todo: should be a separate endpoint
 };
 
-export {allWifis};
+const getFeatures = async () => {
+  return await get("/wifis/get/features");
+};
+
+export { getWifis, getFeatures };
