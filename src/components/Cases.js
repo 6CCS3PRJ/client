@@ -12,24 +12,24 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Cases() {
+export default function Cases(props) {
   const history = useHistory();
 
   const classes = useStyles();
   return (
-    <React.Fragment>
-      <Title>Positive Cases (24hrs)</Title>
+    <>
+      <Title>Positive Cases</Title>
       <Typography component="p" variant="h4">
-        653
+        {props.count ?? 0}
       </Typography>
       <Typography color="textSecondary" className={classes.depositContext}>
         on {DateTime.now().toLocaleString(DateTime.DATE_MED)}
       </Typography>
       <div>
-        <Link color="primary" onClick={() => history.push("/cases")}>
+        <Link color="primary" onClick={() => history.push("/hotspots")}>
           View all
         </Link>
       </div>
-    </React.Fragment>
+    </>
   );
 }

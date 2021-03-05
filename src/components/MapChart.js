@@ -11,7 +11,7 @@ import { CircularProgress } from "@material-ui/core";
 import * as axios from "axios";
 
 const centrePoint = [-1.464854, 52.561928]; //https://bit.ly/3usGiQX
-const geoUrl = "https://martinjc.github.io/UK-GeoJSON/json/eng/topo_wards.json";
+const geoUrl = "https://martinjc.github.io/UK-GeoJSON/json/eng/topo_wpc.json";
 
 const MapChart = ({ setTooltipContent }) => {
   const [data, setData] = useState([]);
@@ -48,7 +48,7 @@ const MapChart = ({ setTooltipContent }) => {
     return cur?.hotspotCount > 0 ? colorScale(cur?.hotspotCount) : "#fde0c5";
   };
 
-  return data.length === 0 || true ? (
+  return data.length === 0 ? (
     <CircularProgress />
   ) : (
     <ComposableMap style={{ backgroundColor: "lightblue" }}>
