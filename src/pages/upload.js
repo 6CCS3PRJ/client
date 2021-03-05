@@ -42,7 +42,7 @@ export default function UploadPage() {
             clearInterval(timer);
             clearInterval(loadTokenTimer);
         };
-    }, []);
+    }, [enqueueSnackbar]);
 
     return (
         <>
