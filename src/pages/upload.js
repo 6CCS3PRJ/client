@@ -54,7 +54,7 @@ export default function UploadPage() {
             </Typography>
             <br />
             <br />
-            <Typography variant="h6">
+            <Typography variant="body1">
               By confirming, you will be uploading <strong>ALL</strong> data
               collected in the past 14 days. <br />
               This means that the provider of this service will be able to see
