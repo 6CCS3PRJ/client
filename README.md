@@ -12,7 +12,7 @@
     <img src="docs/icon.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Client</h3>
+<h3 align="center">Client</h3>
 
   <p align="center">
     Web client for a WiFi based contact tracing application, developed as part of <a href="https://github.com/danilo-delbusso"><b>@danilo-delbusso</b></a>'s a final year project
@@ -43,12 +43,12 @@
   </ol>
 </details>
 
-
 ## About The Project
 
 The project is aimed at creating a web client to easily interface with data collected about contagion.
 
-It does not implement authentication, and it's mainly used for data visualisation, as well as generating QR codes to upload data.
+It does not implement authentication, and it's mainly used for data visualisation, as well as generating QR codes to
+upload data.
 
 <p align="center">
   <img alt="Light" src="docs/screenshot-1.jpg" width="30%">
@@ -59,6 +59,7 @@ It does not implement authentication, and it's mainly used for data visualisatio
 </p>
 
 <!-- GETTING STARTED -->
+
 ## Getting Started
 
 To get a local copy up and running follow these simple steps.
@@ -86,7 +87,7 @@ Then download all dependencies
 npm install
 ```
 
-Finally, start the client using 
+Finally, start the client using
 
 ```zsh
 npm start
@@ -95,25 +96,29 @@ npm start
 The client will start at [http://localhost:3000](http://localhost:3000)
 
 <!-- ROADMAP -->
+
 ## Roadmap
 
 See the [open issues](https://github.com/6CCS3PRJ/client/issues) for a list of proposed features (and known issues).
 
 
 <!-- CONTRIBUTING -->
+
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create.
 
-
-The repo itself is just used to show the project. It is **NOT** actively maintained. The author suggests forking the project instead of opening new issues.
+The repo itself is just used to show the project. It is **NOT** actively maintained. The author suggests forking the
+project instead of opening new issues.
 
 <!-- LICENSE -->
+
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
 <!-- CONTACT -->
+
 ## Contact
 
 Danilo Del Busso - [@danilo_delbusso](https://twitter.com/danilo_delbusso)
@@ -121,15 +126,27 @@ Danilo Del Busso - [@danilo_delbusso](https://twitter.com/danilo_delbusso)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
 [contributors-shield]: https://img.shields.io/github/contributors/6CCS3PRJ/client.svg?style=for-the-badge
+
 [contributors-url]: https://github.com/6CCS3PRJ/client/graphs/contributors
+
 [forks-shield]: https://img.shields.io/github/forks/6CCS3PRJ/client.svg?style=for-the-badge
+
 [forks-url]: https://github.com/6CCS3PRJ/client/network/members
+
 [stars-shield]: https://img.shields.io/github/stars/6CCS3PRJ/client.svg?style=for-the-badge
+
 [stars-url]: https://github.com/6CCS3PRJ/client/stargazers
+
 [issues-shield]: https://img.shields.io/github/issues/6CCS3PRJ/client.svg?style=for-the-badge
+
 [issues-url]: https://github.com/6CCS3PRJ/client/issues
+
 [license-shield]: https://img.shields.io/github/license/6CCS3PRJ/client.svg?style=for-the-badge
+
 [license-url]: https://github.com/6CCS3PRJ/client/blob/master/LICENSE.txt
+
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+
 [linkedin-url]: https://www.linkedin.com/in/danilo-delbusso/

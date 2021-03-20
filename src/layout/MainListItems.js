@@ -1,5 +1,5 @@
 import React from "react";
-import { ListItem, ListItemText, ListItemIcon } from "@material-ui/core/";
+import { ListItem, ListItemIcon, ListItemText } from "@material-ui/core/";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import MapIcon from "@material-ui/icons/Map";
 import WifiIcon from "@material-ui/icons/Wifi";

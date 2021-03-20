@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Grid, Typography, Paper } from "@material-ui/core/";
+import { Grid, Paper, Typography } from "@material-ui/core/";
 import Layout from "../layout/Layout";
 import "./home.css";
 import MapChart from "../components/MapChart";

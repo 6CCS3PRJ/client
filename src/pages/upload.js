@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../layout/Layout";
 import "./home.css";
 import QRCode from "qrcode.react";
 import {
-  Grid,
   CircularProgress,
-  Typography,
+  Grid,
   LinearProgress,
+  Typography,
 } from "@material-ui/core";
 import { getToken } from "../api/server";
 import { useSnackbar } from "notistack";
+
 const APP_URL = "http://www.prj-android-app.com/upload?token=";
 const QR_DURATION = 60; //in seconds
 
