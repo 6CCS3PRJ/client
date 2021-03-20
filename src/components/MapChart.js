@@ -11,7 +11,8 @@ import { CircularProgress, Typography } from "@material-ui/core";
 import * as axios from "axios";
 
 const centrePoint = [14, 41]; //https://bit.ly/3usGiQX
-const geoUrl = "https://raw.githubusercontent.com/openpolis/geojson-italy/master/geojson/limits_IT_provinces.geojson";
+const geoUrl =
+  "https://raw.githubusercontent.com/openpolis/geojson-italy/master/geojson/limits_IT_provinces.geojson";
 
 const MapChart = ({ setTooltipContent }) => {
   const [data, setData] = useState([]);
@@ -45,7 +46,9 @@ const MapChart = ({ setTooltipContent }) => {
     if (highlight === geo && geo !== null) {
       return "#D9B6AF";
     }
-    return cur?.positivesCount > 0 ? colorScale(cur?.positivesCount) : "#fde0c5";
+    return cur?.positivesCount > 0
+      ? colorScale(cur?.positivesCount)
+      : "#fde0c5";
   };
 
   return data.length === 0 ? (
@@ -61,8 +64,9 @@ const MapChart = ({ setTooltipContent }) => {
         <Geographies geography={topology}>
           {({ geographies }) =>
             geographies.map((geo) => {
-              
-              const cur = data.find((s) => s?.properties?.prov_acr === geo?.properties?.prov_acr);
+              const cur = data.find(
+                (s) => s?.properties?.prov_acr === geo?.properties?.prov_acr
+              );
               return (
                 <Geography
                   onMouseLeave={() => {
