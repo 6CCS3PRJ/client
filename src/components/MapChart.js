@@ -10,8 +10,8 @@ import { getFeatures } from "../api/server";
 import { CircularProgress, Typography } from "@material-ui/core";
 import * as axios from "axios";
 
-const centrePoint = [-1.464854, 52.561928]; //https://bit.ly/3usGiQX
-const geoUrl = "https://martinjc.github.io/UK-GeoJSON/json/eng/topo_wpc.json";
+const centrePoint = [14, 41]; //https://bit.ly/3usGiQX
+const geoUrl = "https://raw.githubusercontent.com/openpolis/geojson-italy/master/geojson/limits_IT_provinces.geojson";
 
 const MapChart = ({ setTooltipContent }) => {
   const [data, setData] = useState([]);
@@ -30,7 +30,7 @@ const MapChart = ({ setTooltipContent }) => {
   }, []);
 
   const colorScale = scaleQuantile()
-    .domain(data.map((d) => d.hotspotCount))
+    .domain(data.map((d) => d.positivesCount))
     .range([
       "#fcde9c",
       "#faa476",
@@ -45,7 +45,7 @@ const MapChart = ({ setTooltipContent }) => {
     if (highlight === geo && geo !== null) {
       return "#D9B6AF";
     }
-    return cur?.hotspotCount > 0 ? colorScale(cur?.hotspotCount) : "#fde0c5";
+    return cur?.positivesCount > 0 ? colorScale(cur?.positivesCount) : "#fde0c5";
   };
 
   return data.length === 0 ? (
@@ -57,11 +57,12 @@ const MapChart = ({ setTooltipContent }) => {
     </>
   ) : (
     <ComposableMap style={{ backgroundColor: "lightblue" }}>
-      <ZoomableGroup zoom={35} center={centrePoint} maxZoom={500} minZoom={10}>
+      <ZoomableGroup zoom={25} center={centrePoint} maxZoom={500} minZoom={10}>
         <Geographies geography={topology}>
           {({ geographies }) =>
             geographies.map((geo) => {
-              const cur = data.find((s) => s?.id === geo?.id);
+              
+              const cur = data.find((s) => s?.properties?.prov_acr === geo?.properties?.prov_acr);
               return (
                 <Geography
                   onMouseLeave={() => {
@@ -69,8 +70,8 @@ const MapChart = ({ setTooltipContent }) => {
                     setHighlight(null);
                   }}
                   onMouseEnter={() => {
-                    const { PCON13NM } = geo.properties;
-                    setTooltipContent([PCON13NM, cur?.hotspotCount ?? 0]);
+                    const { prov_name } = geo.properties;
+                    setTooltipContent([prov_name, cur?.positivesCount ?? 0]);
                     setHighlight(geo);
                   }}
                   style={{

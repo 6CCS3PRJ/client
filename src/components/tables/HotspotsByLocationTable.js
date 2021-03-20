@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getWifis } from "../../api/server";
+import { getFeatures } from "../../api/server";
 import MaterialTable from "material-table";
 
 const HotspotsByLocationTable = () => {
@@ -8,13 +8,13 @@ const HotspotsByLocationTable = () => {
 
   const loadWifis = async () => {
     setLoading(true);
-    let [code, result] = await getWifis();
+    let [code, result] = await getFeatures();
     setLoading(false);
     if (code === 200) {
       result = result.map((county) => ({
-        hotspotCount: county.hotspotCount ?? 0,
-        name: county.properties.PCON13NM,
-        areaCode: county.properties.PCON13CD,
+        accessPointsCount: county.accessPointsCount ?? 0,
+        name: county.properties.prov_name,
+        areaCode: county.properties.prov_acr,
       }));
       setData(result);
     }
@@ -26,10 +26,10 @@ const HotspotsByLocationTable = () => {
 
   return (
     <MaterialTable
-      title="Registered Hotspots by Location"
+      title="Registered Access Points by Region"
       columns={[
         { title: "Location", field: "name" },
-        { title: "Hotspot Count", field: "hotspotCount" },
+        { title: "Hotspot Count", field: "accessPointsCount" },
         {
           title: "Area Code",
           field: "areaCode",
