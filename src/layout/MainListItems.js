@@ -3,7 +3,6 @@ import {
   ListItem,
   ListItemText,
   ListItemIcon,
-  Typography,
 } from "@material-ui/core/";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import MapIcon from "@material-ui/icons/Map";
