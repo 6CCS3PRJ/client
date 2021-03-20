@@ -92,7 +92,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
+      <Link color="inherit" href="https://danilo-delbusso.me/">
         Danilo Del Busso
       </Link>{" "}
       {new Date().getFullYear()}
