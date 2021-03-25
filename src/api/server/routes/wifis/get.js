@@ -4,4 +4,8 @@ const getFeatures = async () => {
   return await get("/wifis/get/features");
 };
 
-export { getFeatures };
+const getScanCounts = async ()=>{
+  return await get("/wifis/get/scanCounts");
+}
+
+export { getFeatures, getScanCounts };
