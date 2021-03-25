@@ -11,11 +11,15 @@ const HotspotsByLocationTable = () => {
     let [code, result] = await getFeatures();
     setLoading(false);
     if (code === 200) {
-      result = result.map((county) => ({
-        accessPointsCount: county.accessPointsCount ?? 0,
-        name: county.properties.prov_name,
-        areaCode: county.properties.prov_acr,
+      result = result.features.map((county) => ({
+        accessPointsCount: county.properties.accessPointsCount ?? 0,
+        positivesCount : county.properties.positivesCount ?? 0,
+        name: county.properties.PCON13NM,
+        areaCode: county.properties.PCON13CD,
       }));
+
+      result.sort((a,b) => b.positivesCount - a.positivesCount || b.accessPointsCount - a.accessPointsCount)
+
       setData(result);
     }
   };
@@ -29,7 +33,8 @@ const HotspotsByLocationTable = () => {
       title="Registered Access Points by Region"
       columns={[
         { title: "Location", field: "name" },
-        { title: "Hotspot Count", field: "accessPointsCount" },
+        { title: "Positive Scans", field: "accessPointsCount" },
+        { title: "Hotspot Count", field: "positivesCount" },
         {
           title: "Area Code",
           field: "areaCode",

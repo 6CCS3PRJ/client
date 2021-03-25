@@ -1,101 +1,96 @@
 import React, { useEffect, useState } from "react";
-import {
-  ComposableMap,
-  Geographies,
-  Geography,
-  ZoomableGroup,
-} from "react-simple-maps";
-import { scaleQuantile } from "d3-scale";
-import { getFeatures } from "../api/server";
+
+import { getFeatures, getScanCounts } from "../api/server";
 import { CircularProgress, Typography } from "@material-ui/core";
-import * as axios from "axios";
 
-const centrePoint = [14, 41]; //https://bit.ly/3usGiQX
-const geoUrl =
-  "https://raw.githubusercontent.com/openpolis/geojson-italy/master/geojson/limits_IT_provinces.geojson";
-
+import { Map, TileLayer, GeoJSON, LayersControl } from 'react-leaflet';
+import HeatmapLayer from 'react-leaflet-heatmap-layer'
+const centrePoint = [52.561928, -1.464854]; //https://bit.ly/3usGiQX
+const defaultZoom = 6;
 const MapChart = ({ setTooltipContent }) => {
-  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false)
   const [topology, setTopology] = useState();
-  const [highlight, setHighlight] = useState(null);
-  const loadWifis = async () => {
-    const [code, result] = await getFeatures();
-    setTopology((await axios.get(geoUrl)).data);
-    if (code === 200) {
-      setData(result);
+  const [scanCounts, setScanCounts] = useState([])
+
+  const loadData = async () => {
+    setLoading(true)
+    try {
+      let [code, result] = await getScanCounts();
+      const scans = []
+      if (code === 200) {
+        for (const scan of result) {
+          scans.push([scan.lat, scan.lng, scan.count]);
+        }
+      }
+      setScanCounts(scans);
+      [code, result] = await getFeatures();
+      if (code === 200) {
+        setTopology(result)
+      }
+    } catch {
+
     }
+    setLoading(false)
   };
+
 
   useEffect(() => {
-    loadWifis();
+    loadData();
   }, []);
 
-  const colorScale = scaleQuantile()
-    .domain(data.map((d) => d.positivesCount))
-    .range([
-      "#fcde9c",
-      "#faa476",
-      "#f0746e",
-      "#e34f6f",
-      "#dc3977",
-      "#b9257a",
-      "#7c1d6f",
-    ]);
+  const handleBindPopups = (feature, layer) => {
 
-  const getFill = (cur, geo) => {
-    if (highlight === geo && geo !== null) {
-      return "#D9B6AF";
-    }
-    return cur?.positivesCount > 0
-      ? colorScale(cur?.positivesCount)
-      : "#fde0c5";
-  };
+    layer.on('mouseover', function (e) {
+      setTooltipContent(feature)
+    });
+    layer.on('mouseout', () => {
+      setTooltipContent(undefined)
+    })
+  }
 
-  return data.length === 0 ? (
-    <>
+
+
+
+  return (
+    loading ? <>
       <Typography variant="h5" style={{ paddingTop: 50 }}>
         Loading Map Data{" "}
       </Typography>
       <br /> <CircularProgress />
-    </>
-  ) : (
-    <ComposableMap style={{ backgroundColor: "lightblue" }}>
-      <ZoomableGroup zoom={25} center={centrePoint} maxZoom={500} minZoom={10}>
-        <Geographies geography={topology}>
-          {({ geographies }) =>
-            geographies.map((geo) => {
-              const cur = data.find(
-                (s) => s?.properties?.prov_acr === geo?.properties?.prov_acr
-              );
-              return (
-                <Geography
-                  onMouseLeave={() => {
-                    setTooltipContent("");
-                    setHighlight(null);
-                  }}
-                  onMouseEnter={() => {
-                    const { prov_name } = geo.properties;
-                    setTooltipContent([prov_name, cur?.positivesCount ?? 0]);
-                    setHighlight(geo);
-                  }}
-                  style={{
-                    default: {
-                      outline: "none",
-                    },
-                    hover: { outline: "none" },
-                    pressed: { outline: "none" },
-                  }}
-                  onClick={(e) => e.preventDefault()}
-                  key={geo.rsmKey}
-                  geography={geo}
-                  fill={getFill(cur, geo)}
-                />
-              );
-            })
-          }
-        </Geographies>
-      </ZoomableGroup>
-    </ComposableMap>
+    </> :
+      <Map style={{ height: "80vh", width: "100%", zIndex: 1 }} center={centrePoint} zoom={defaultZoom} maxZoom={20} minZoom={0}>
+        <LayersControl position="topright">
+          <LayersControl.BaseLayer checked name="Light">
+            <TileLayer
+              url='https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png'
+              attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+              minZoom={0}
+              maxZoom={20}
+            />
+          </LayersControl.BaseLayer>
+          <LayersControl.BaseLayer name="Dark">
+            <TileLayer
+              url='https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png'
+              attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+              minZoom={0}
+              maxZoom={20}
+            />
+          </LayersControl.BaseLayer>
+          <LayersControl.Overlay checked name="Show Data" >
+            {topology ? <GeoJSON style={{ fillOpacity: 0.05, weight: 0.5 }} onEachFeature={handleBindPopups} key={topology.features.length} data={topology} /> : <></>}
+          </LayersControl.Overlay>
+          <LayersControl.Overlay checked name="Show Heatmap">
+            <HeatmapLayer
+              points={scanCounts}
+              longitudeExtractor={m => m[1]}
+              latitudeExtractor={m => m[0]}
+              intensityExtractor={m => parseFloat(m[2])}
+            />
+          </LayersControl.Overlay>
+        </LayersControl>
+
+      </Map>
+
   );
 };
 
