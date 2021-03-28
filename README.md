@@ -8,7 +8,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/6CCS3PRJ/client">
+  <a href="https://github.com/wifi-tracing/client">
     <img src="docs/icon.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -17,7 +17,7 @@
   <p align="center">
     Web client for a WiFi based contact tracing application, developed as part of <a href="https://github.com/danilo-delbusso"><b>@danilo-delbusso</b></a>'s a final year project
     <br />
-    <a href="https://github.com/6CCS3PRJ/client/issues">Report Bug</a>
+    <a href="https://github.com/wifi-tracing/client/issues">Report Bug</a>
   </p>
 </p>
 
@@ -78,7 +78,7 @@ It is suggested to install Node.js and npm using [nvm](https://github.com/nvm-sh
 To install, first clone the repository
 
 ```zsh
-git clone https://github.com/6CCS3PRJ/client.git
+git clone https://github.com/wifi-tracing/client.git
 ```
 
 Then download all dependencies
@@ -99,7 +99,7 @@ The client will start at [http://localhost:3000](http://localhost:3000)
 
 ## Roadmap
 
-See the [open issues](https://github.com/6CCS3PRJ/client/issues) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/wifi-tracing/client/issues) for a list of proposed features (and known issues).
 
 
 <!-- CONTRIBUTING -->
@@ -130,25 +130,25 @@ Danilo Del Busso - [@danilo_delbusso](https://twitter.com/danilo_delbusso)
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/6CCS3PRJ/client.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/wifi-tracing/client.svg?style=for-the-badge
 
-[contributors-url]: https://github.com/6CCS3PRJ/client/graphs/contributors
+[contributors-url]: https://github.com/wifi-tracing/client/graphs/contributors
 
-[forks-shield]: https://img.shields.io/github/forks/6CCS3PRJ/client.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/wifi-tracing/client.svg?style=for-the-badge
 
-[forks-url]: https://github.com/6CCS3PRJ/client/network/members
+[forks-url]: https://github.com/wifi-tracing/client/network/members
 
-[stars-shield]: https://img.shields.io/github/stars/6CCS3PRJ/client.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/wifi-tracing/client.svg?style=for-the-badge
 
-[stars-url]: https://github.com/6CCS3PRJ/client/stargazers
+[stars-url]: https://github.com/wifi-tracing/client/stargazers
 
-[issues-shield]: https://img.shields.io/github/issues/6CCS3PRJ/client.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/wifi-tracing/client.svg?style=for-the-badge
 
-[issues-url]: https://github.com/6CCS3PRJ/client/issues
+[issues-url]: https://github.com/wifi-tracing/client/issues
 
-[license-shield]: https://img.shields.io/github/license/6CCS3PRJ/client.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/wifi-tracing/client.svg?style=for-the-badge
 
-[license-url]: https://github.com/6CCS3PRJ/client/blob/master/LICENSE.txt
+[license-url]: https://github.com/wifi-tracing/client/blob/master/LICENSE.txt
 
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 
