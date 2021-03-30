@@ -1,12 +1,12 @@
-const axios = require('axios').default;
-const {promisify} = require('util');
+const axios = require("axios").default;
+const {promisify} = require("util");
 const sleep = promisify(setTimeout);
 
 // Callbacks to be run when a specific error code is returned.
 // These are global callbacks that must be registered when user logs in
 // and are independent of the page.
-let run401Handler = undefined; // todo: Should normally logout
-let run403Handler = undefined; // todo: Should probably redirect home and refresh eventual authentication token
+let run401Handler = undefined;
+let run403Handler = undefined;
 
 let handlerCalled = false;
 
@@ -21,11 +21,11 @@ const register403Handler = (callback) => {
 };
 
 const domain =
-  process.env.REACT_APP_MODE === 'production' ?
+  process.env.REACT_APP_MODE === "production" ?
     process.env.REACT_APP_SERVER_URL_PRODUCTION :
     process.env.REACT_APP_SERVER_URL;
 const server = axios.create({
-  baseURL: domain + '/api/v1',
+  baseURL: domain + "/api/v1",
   timeout: 120000,
 });
 

@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {useTheme} from '@material-ui/core/styles';
+import React, {useEffect, useState} from "react";
+import {useTheme} from "@material-ui/core/styles";
 import {
   Label,
   Line,
@@ -8,11 +8,12 @@ import {
   Tooltip,
   XAxis,
   YAxis,
-} from 'recharts';
-import Title from './Title';
-import {CircularProgress} from '@material-ui/core';
+} from "recharts";
+import Title from "./Title";
+import {CircularProgress} from "@material-ui/core";
+import PropTypes from "prop-types";
 
-export default function Chart(props) {
+const Chart = (props) => {
   const theme = useTheme();
   const [data, setData] = useState([]);
 
@@ -43,7 +44,7 @@ export default function Chart(props) {
                 angle={270}
                 position="left"
                 style={{
-                  textAnchor: 'middle',
+                  textAnchor: "middle",
                   fill: theme.palette.text.primary,
                 }}>
                 Positive Cases
@@ -60,4 +61,11 @@ export default function Chart(props) {
       </ResponsiveContainer>
     </>
   );
-}
+};
+
+Chart.propTypes = {
+  stats: PropTypes.array,
+  loading: PropTypes.bool,
+};
+
+export default Chart;

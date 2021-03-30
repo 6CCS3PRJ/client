@@ -1,12 +1,15 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState} from "react";
 
-import {getFeatures, getScanCounts} from '../api/server';
-import {CircularProgress, Typography} from '@material-ui/core';
+import {getFeatures, getScanCounts} from "../api/server";
+import {CircularProgress, Typography} from "@material-ui/core";
 
-import {Map, TileLayer, GeoJSON, LayersControl} from 'react-leaflet';
-import HeatmapLayer from 'react-leaflet-heatmap-layer';
+import {Map, TileLayer, GeoJSON, LayersControl} from "react-leaflet";
+import HeatmapLayer from "react-leaflet-heatmap-layer";
+import PropTypes from "prop-types";
+
 const centrePoint = [52.561928, -1.464854]; // https://bit.ly/3usGiQX
 const defaultZoom = 6;
+
 const MapChart = ({setTooltipContent}) => {
   const [loading, setLoading] = useState(false);
   const [topology, setTopology] = useState();
@@ -36,10 +39,10 @@ const MapChart = ({setTooltipContent}) => {
   }, []);
 
   const handleBindPopups = (feature, layer) => {
-    layer.on('mouseover', function(e) {
+    layer.on("mouseover", function(e) {
       setTooltipContent(feature);
     });
-    layer.on('mouseout', () => {
+    layer.on("mouseout", () => {
       setTooltipContent(undefined);
     });
   };
@@ -47,13 +50,13 @@ const MapChart = ({setTooltipContent}) => {
   return loading ? (
     <>
       <Typography variant="h5" style={{paddingTop: 50}}>
-        Loading Map Data{' '}
+        Loading Map Data{" "}
       </Typography>
       <br /> <CircularProgress />
     </>
   ) : (
     <Map
-      style={{height: '80vh', width: '100%', zIndex: 1}}
+      style={{height: "80vh", width: "100%", zIndex: 1}}
       center={centrePoint}
       zoom={defaultZoom}
       maxZoom={20}
@@ -98,6 +101,11 @@ const MapChart = ({setTooltipContent}) => {
       </LayersControl>
     </Map>
   );
+};
+
+
+MapChart.propTypes = {
+  setTooltipContent: PropTypes.func,
 };
 
 export default MapChart;

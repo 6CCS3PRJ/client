@@ -1,29 +1,29 @@
-import React, {useEffect, useState} from 'react';
-import clsx from 'clsx';
-import {makeStyles} from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Chart from '../components/Chart';
-import Cases from '../components/Cases';
-import Layout from '../layout/Layout';
-import './home.css';
-import {getUploadStats} from '../api/server';
-import {useSnackbar} from 'notistack';
-import {DateTime} from 'luxon';
+import React, {useEffect, useState} from "react";
+import clsx from "clsx";
+import {makeStyles} from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
+import Chart from "../components/Chart";
+import Cases from "../components/Cases";
+import Layout from "../layout/Layout";
+import "./home.css";
+import {getUploadStats} from "../api/server";
+import {useSnackbar} from "notistack";
+import {DateTime} from "luxon";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(2),
-    display: 'flex',
-    overflow: 'auto',
-    flexDirection: 'column',
+    display: "flex",
+    overflow: "auto",
+    flexDirection: "column",
   },
   fixedHeight: {
     height: 240,
   },
 }));
 
-export default function HomePage() {
+const HomePage = () => {
   const classes = useStyles();
   const {enqueueSnackbar} = useSnackbar();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
@@ -37,8 +37,8 @@ export default function HomePage() {
       const [code, result] = await getUploadStats();
       setLoadingStats(false);
       if (code !== 200) {
-        enqueueSnackbar('There was an error.', {
-          variant: 'error',
+        enqueueSnackbar("There was an error.", {
+          variant: "error",
           autoHideDuration: 300,
         });
         return;
@@ -55,8 +55,8 @@ export default function HomePage() {
       setUploadStats(
           result.map((el) => {
             el.date = DateTime.fromISO(el.date).toLocaleString({
-              day: '2-digit',
-              month: 'short',
+              day: "2-digit",
+              month: "short",
             });
             return el;
           }),
@@ -85,4 +85,6 @@ export default function HomePage() {
       </Layout>
     </>
   );
-}
+};
+
+export default HomePage;

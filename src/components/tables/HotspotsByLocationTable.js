@@ -1,6 +1,7 @@
-import React, {useEffect, useState} from 'react';
-import {getFeatures} from '../../api/server';
-import MaterialTable from 'material-table';
+/* eslint-disable react/display-name */
+import React, {useEffect, useState} from "react";
+import {getFeatures} from "../../api/server";
+import MaterialTable from "material-table";
 
 const HotspotsByLocationTable = () => {
   const [data, setData] = useState([]);
@@ -36,12 +37,12 @@ const HotspotsByLocationTable = () => {
     <MaterialTable
       title="Registered Access Points by Region"
       columns={[
-        {title: 'Location', field: 'name'},
-        {title: 'Positive Scans', field: 'accessPointsCount'},
-        {title: 'Hotspot Count', field: 'positivesCount'},
+        {title: "Location", field: "name"},
+        {title: "Positive Scans", field: "accessPointsCount"},
+        {title: "Hotspot Count", field: "positivesCount"},
         {
-          title: 'Area Code',
-          field: 'areaCode',
+          title: "Area Code",
+          field: "areaCode",
           render: (rowData) => (
             <a
               href={`https://findthatpostcode.uk/areas/${rowData.areaCode}.html`}

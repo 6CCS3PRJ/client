@@ -1,20 +1,20 @@
-import React, {useEffect, useState} from 'react';
-import Layout from '../layout/Layout';
-import './home.css';
-import QRCode from 'qrcode.react';
+import React, {useEffect, useState} from "react";
+import Layout from "../layout/Layout";
+import "./home.css";
+import QRCode from "qrcode.react";
 import {
   CircularProgress,
   Grid,
   LinearProgress,
   Typography,
-} from '@material-ui/core';
-import {getToken} from '../api/server';
-import {useSnackbar} from 'notistack';
+} from "@material-ui/core";
+import {getToken} from "../api/server";
+import {useSnackbar} from "notistack";
 
-const APP_URL = 'http://www.prj-android-app.com/upload?token=';
+const APP_URL = "http://www.prj-android-app.com/upload?token=";
 const QR_DURATION = 60; // in seconds
 
-export default function UploadPage() {
+const UploadPage = () => {
   const {enqueueSnackbar} = useSnackbar();
   const [token, setToken] = useState();
   const [secondsLeft, setSecondsLeft] = useState(0);
@@ -26,8 +26,8 @@ export default function UploadPage() {
       if (code === 200) {
         setToken(result);
       } else {
-        enqueueSnackbar('Could not fetch a new token for the QR code', {
-          variant: '3000',
+        enqueueSnackbar("Could not fetch a new token for the QR code", {
+          variant: "3000",
           autoHideDuration: 3000,
         });
       }
@@ -35,7 +35,7 @@ export default function UploadPage() {
     loadToken();
     setSecondsLeft(0);
     const timer = setInterval(() => {
-      setSecondsLeft((secondsLeft) => secondsLeft + 0.1); // <-- Change this line!
+      setSecondsLeft((secondsLeft) => secondsLeft + 0.1);
     }, 100);
     const loadTokenTimer = setInterval(loadToken, QR_DURATION * 1000);
 
@@ -59,7 +59,7 @@ export default function UploadPage() {
               By confirming, you will be uploading <strong>ALL</strong> data
               collected in the past 14 days. <br />
               This means that the provider of this service will be able to see
-              all WiFi signals you've been near in the past 14 days.
+              all WiFi signals you&#39;ve been near in the past 14 days.
               <br />
               This information could be used to triangulate your location for
               this period of time. <br />
@@ -79,7 +79,7 @@ export default function UploadPage() {
                   QR_DURATION - secondsLeft
                 ).toFixed(1)}s`}</Typography>
                 <LinearProgress
-                  style={{width: '50%'}}
+                  style={{width: "50%"}}
                   variant="determinate"
                   value={(secondsLeft / QR_DURATION) * 100}
                 />
@@ -92,4 +92,6 @@ export default function UploadPage() {
       </Layout>
     </>
   );
-}
+};
+
+export default UploadPage;

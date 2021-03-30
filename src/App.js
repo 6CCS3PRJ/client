@@ -1,15 +1,15 @@
-import React from 'react';
+import React from "react";
 import {
   BrowserRouter as Router,
   Route,
   Switch,
   useHistory,
-} from 'react-router-dom';
-import {SnackbarProvider} from 'notistack';
-import HomePage from './pages/home';
-import HotspotsPage from './pages/hotspots';
-import UploadPage from './pages/upload';
-import MapPage from './pages/map';
+} from "react-router-dom";
+import {SnackbarProvider} from "notistack";
+import HomePage from "./pages/home";
+import HotspotsPage from "./pages/hotspots";
+import UploadPage from "./pages/upload";
+import MapPage from "./pages/map";
 
 const App = () => {
   const history = useHistory();
@@ -17,8 +17,8 @@ const App = () => {
     <SnackbarProvider
       maxSnack={3}
       anchorOrigin={{
-        vertical: 'bottom',
-        horizontal: 'right',
+        vertical: "bottom",
+        horizontal: "right",
       }}>
       <Router history={history}>
         <Switch>
