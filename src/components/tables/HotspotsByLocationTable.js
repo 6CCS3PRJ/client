@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { getFeatures } from "../../api/server";
-import MaterialTable from "material-table";
+import React, {useEffect, useState} from 'react';
+import {getFeatures} from '../../api/server';
+import MaterialTable from 'material-table';
 
 const HotspotsByLocationTable = () => {
   const [data, setData] = useState([]);
@@ -13,12 +13,16 @@ const HotspotsByLocationTable = () => {
     if (code === 200) {
       result = result.features.map((county) => ({
         accessPointsCount: county.properties.accessPointsCount ?? 0,
-        positivesCount : county.properties.positivesCount ?? 0,
+        positivesCount: county.properties.positivesCount ?? 0,
         name: county.properties.PCON13NM,
         areaCode: county.properties.PCON13CD,
       }));
 
-      result.sort((a,b) => b.positivesCount - a.positivesCount || b.accessPointsCount - a.accessPointsCount)
+      result.sort(
+          (a, b) =>
+            b.positivesCount - a.positivesCount ||
+          b.accessPointsCount - a.accessPointsCount,
+      );
 
       setData(result);
     }
@@ -32,18 +36,17 @@ const HotspotsByLocationTable = () => {
     <MaterialTable
       title="Registered Access Points by Region"
       columns={[
-        { title: "Location", field: "name" },
-        { title: "Positive Scans", field: "accessPointsCount" },
-        { title: "Hotspot Count", field: "positivesCount" },
+        {title: 'Location', field: 'name'},
+        {title: 'Positive Scans', field: 'accessPointsCount'},
+        {title: 'Hotspot Count', field: 'positivesCount'},
         {
-          title: "Area Code",
-          field: "areaCode",
+          title: 'Area Code',
+          field: 'areaCode',
           render: (rowData) => (
             <a
               href={`https://findthatpostcode.uk/areas/${rowData.areaCode}.html`}
               rel="noreferrer"
-              target="_blank"
-            >
+              target="_blank">
               {rowData.areaCode}
             </a>
           ),

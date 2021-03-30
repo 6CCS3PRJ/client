@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from "react";
-import clsx from "clsx";
-import { makeStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
-import Chart from "../components/Chart";
-import Cases from "../components/Cases";
-import Layout from "../layout/Layout";
-import "./home.css";
-import { getUploadStats } from "../api/server";
-import { useSnackbar } from "notistack";
-import { DateTime } from "luxon";
+import React, {useEffect, useState} from 'react';
+import clsx from 'clsx';
+import {makeStyles} from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import Chart from '../components/Chart';
+import Cases from '../components/Cases';
+import Layout from '../layout/Layout';
+import './home.css';
+import {getUploadStats} from '../api/server';
+import {useSnackbar} from 'notistack';
+import {DateTime} from 'luxon';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(2),
-    display: "flex",
-    overflow: "auto",
-    flexDirection: "column",
+    display: 'flex',
+    overflow: 'auto',
+    flexDirection: 'column',
   },
   fixedHeight: {
     height: 240,
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function HomePage() {
   const classes = useStyles();
-  const { enqueueSnackbar } = useSnackbar();
+  const {enqueueSnackbar} = useSnackbar();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   const [uploadStats, setUploadStats] = useState();
@@ -37,29 +37,29 @@ export default function HomePage() {
       const [code, result] = await getUploadStats();
       setLoadingStats(false);
       if (code !== 200) {
-        enqueueSnackbar("There was an error.", {
-          variant: "error",
+        enqueueSnackbar('There was an error.', {
+          variant: 'error',
           autoHideDuration: 300,
         });
         return;
       }
       const todayDate = DateTime.now().toISODate();
       console.log(todayDate);
-      let today = result.filter(
-        (el) => todayDate === DateTime.fromISO(el.date).toISODate()
+      const today = result.filter(
+          (el) => todayDate === DateTime.fromISO(el.date).toISODate(),
       );
       if (today.length === 1) {
         setTodaysCount(today[0].amount);
       }
 
       setUploadStats(
-        result.map((el) => {
-          el.date = DateTime.fromISO(el.date).toLocaleString({
-            day: "2-digit",
-            month: "short",
-          });
-          return el;
-        })
+          result.map((el) => {
+            el.date = DateTime.fromISO(el.date).toLocaleString({
+              day: '2-digit',
+              month: 'short',
+            });
+            return el;
+          }),
       );
     };
     loadUploadStats();

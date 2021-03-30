@@ -1,12 +1,12 @@
-const axios = require("axios").default;
-const { promisify } = require("util");
+const axios = require('axios').default;
+const {promisify} = require('util');
 const sleep = promisify(setTimeout);
 
 // Callbacks to be run when a specific error code is returned.
 // These are global callbacks that must be registered when user logs in
 // and are independent of the page.
-let run401Handler = undefined; //todo: Should normally logout
-let run403Handler = undefined; //todo: Should probably redirect home and refresh eventual authentication token
+let run401Handler = undefined; // todo: Should normally logout
+let run403Handler = undefined; // todo: Should probably redirect home and refresh eventual authentication token
 
 let handlerCalled = false;
 
@@ -21,11 +21,11 @@ const register403Handler = (callback) => {
 };
 
 const domain =
-  process.env.REACT_APP_MODE === "production"
-    ? process.env.REACT_APP_SERVER_URL_PRODUCTION
-    : process.env.REACT_APP_SERVER_URL;
+  process.env.REACT_APP_MODE === 'production' ?
+    process.env.REACT_APP_SERVER_URL_PRODUCTION :
+    process.env.REACT_APP_SERVER_URL;
 const server = axios.create({
-  baseURL: domain + "/api/v1",
+  baseURL: domain + '/api/v1',
   timeout: 120000,
 });
 
@@ -33,11 +33,11 @@ const server = axios.create({
 // code will not be 401 or 403 as they are handler centrally
 const post = async (path, data, config = {}) => {
   try {
-    let res = await server.post(path, data, config);
+    const res = await server.post(path, data, config);
     return [res.status, res.data];
   } catch (err) {
     if (!err.response) {
-      //handlerCalled = true;
+      // handlerCalled = true;
       return [undefined, undefined];
     }
 
@@ -65,11 +65,11 @@ const post = async (path, data, config = {}) => {
 // code will not be 401 or 403 as they are handler centrally
 const get = async (path, config = {}) => {
   try {
-    let res = await server.get(path, config);
+    const res = await server.get(path, config);
     return [res.status, res.data];
   } catch (err) {
     if (!err.response) {
-      //handlerCalled = true;
+      // handlerCalled = true;
       return [undefined, undefined];
     }
 
@@ -91,4 +91,4 @@ const get = async (path, config = {}) => {
   }
 };
 
-export { post, get, register401Handler, register403Handler };
+export {post, get, register401Handler, register403Handler};
