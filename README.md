@@ -21,7 +21,7 @@
   </p>
 </p>
 
-# About The Project
+# ℹ About The Project
 
 The project is aimed at creating a web client to easily interface with data collected about contagion.
 
@@ -37,11 +37,11 @@ upload data.
 </p>
 
 
-# Installation
+# 💽 Installation
 
 This client fetches data from the [server](https://github.com/wifi-tracing/server) module. You should make sure you have a working instance of it running.
 
-## Docker
+## 🐋 Docker
 
 This installation is the fastest, but requires [Docker](https://docs.docker.com/engine/install/#server).
 
@@ -55,9 +55,7 @@ docker build -t client . && docker run -it client
 
 The client will be available at `http://localhost:3000`
 
-## Local Installation
-
-## Local Installation
+## 💻 Local Installation
 
 To install locally without the use of Docker you will need the following dependencies installed and configured on your system:
 
@@ -77,7 +75,7 @@ And then run
 ```bash
 npm start
 ```
-# Configuration
+# ⚙ Configuration
 
 This repository contains a pre-packaged configuration in the form of an .env file.
 
@@ -91,25 +89,25 @@ This is an overview of the used .env values:
 | REACT_APP_SERVER_URL_PRODUCTION 	| The URL of the API when REACT_APP_MODE=production             	| http://localhost:4683 	|
 | REACT_APP_SERVER_URL            	| The URL of the API when REACT_APP_MODE=dev                    	| http://localhost:4683 	|
 
-# Roadmap
+# 🗺 Roadmap
 
 See the [open issues](https://github.com/wifi-tracing/client/issues) for a list of proposed features (and known issues).
 
-# Contributing
+# 💁 Contributing
 
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create.
 
 The repo itself is just used to show the project. It is **NOT** actively maintained. The author suggests forking the
 project instead of opening new issues.
-# License
+# ⚖ License
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
-# Contact
+# 🐦 Contact
 
 Danilo Del Busso - [@danilo_delbusso](https://twitter.com/danilo_delbusso)
 
-# Attributions
+# 🙏 Attributions
 
 <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
 
