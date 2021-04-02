@@ -1,3 +1,13 @@
+/**
+ * Axios HTTP request interface. Contains customised middleware for HTTP
+ * requests to the REST API settings.
+ *
+ * This module was initially written for a separate project by Luka Kralj and I
+ * and has been modified for the purposes of this project.
+ * @author Danilo Del Busso <danilo.delbusso1@gmail.com>
+ * @author Luka Kralj <luka.kralj.cs@gmail.com>
+ */
+
 const axios = require("axios").default;
 const {promisify} = require("util");
 const sleep = promisify(setTimeout);
@@ -91,4 +101,34 @@ const get = async (path, config = {}) => {
   }
 };
 
-export {post, get, register401Handler, register403Handler};
+const patch = async (path, data, config = {}) => {
+  try {
+    const res = await server.patch(path, data, config);
+    return [res.status, res.data];
+  } catch (err) {
+    if (!err.response) {
+      // handlerCalled = true;
+      return [undefined, undefined];
+    }
+
+    if (err.response.status === 401) {
+      if (!handlerCalled) {
+        handlerCalled = true;
+        await run401Handler();
+      }
+      await sleep(10000); // wait for logout to finish
+    } else if (err.response.status === 403) {
+      if (!handlerCalled) {
+        handlerCalled = true;
+        await run403Handler();
+      }
+      await sleep(10000); // wait for logout to finish
+    } else if (err.response.status === 464) {
+      return [err.response.status, err.response.data];
+    } else {
+      return [err.response.status, undefined];
+    }
+  }
+};
+
+export {post, get, patch, register401Handler, register403Handler};
